@@ -1,15 +1,22 @@
-from django.shortcuts import render , HttpResponse , redirect
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth import authenticate, login, logout
 from student import datahandler as studata
 from club import datahandler as clubdata
 from django.http import *
 import traceback
 import pyrebase
+import os
 
 #enter the firebase config api keys
 firebaseConfig = {
+    "apiKey": os.environ.get('FIREBASE_API_KEY'),
+    "authDomain": os.environ.get('FIREBASE_AUTH_DOMAIN'),
+    "projectId": os.environ.get('FIREBASE_PROJECT_ID'),
+    "storageBucket": os.environ.get('FIREBASE_STORAGE_BUCKET'),
+    "messagingSenderId": os.environ.get('FIREBASE_MESSAGING_SENDER_ID'),
+    "appId": os.environ.get('FIREBASE_APP_ID')
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)

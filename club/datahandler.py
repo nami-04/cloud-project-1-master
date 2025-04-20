@@ -11,6 +11,8 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import auth as main_auth
 from event import datahandler as evedata
+import json
+import os
 
 cred = credentials.Certificate("firebaseadmin.json")
 firebase_admin.initialize_app(cred)
@@ -19,9 +21,15 @@ client = MongoClient("")
 db = client.get_database("CloudProject")
 conn = db.Clubs
 
-
 firebaseConfig = {
+    "apiKey": os.environ.get('FIREBASE_API_KEY'),
+    "authDomain": os.environ.get('FIREBASE_AUTH_DOMAIN'),
+    "projectId": os.environ.get('FIREBASE_PROJECT_ID'),
+    "storageBucket": os.environ.get('FIREBASE_STORAGE_BUCKET'),
+    "messagingSenderId": os.environ.get('FIREBASE_MESSAGING_SENDER_ID'),
+    "appId": os.environ.get('FIREBASE_APP_ID')
 }
+
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
