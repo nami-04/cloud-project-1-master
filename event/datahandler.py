@@ -1,17 +1,15 @@
-from pymongo import MongoClient
 from event.models import Event
-from club.models import Club
 from student.models import Student
-from admintask.models import subscription
-from admintask.models import registration
-from student import datahandler as studata
-import traceback
+from club.models import Club
+from django.contrib.auth.models import User
+import uuid
+from pymongo import MongoClient
 import os
 
-client = MongoClient(os.environ.get('MONGODB_URI'))
+# MongoDB connection
+client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/'))
 db = client.get_database("CloudProject")
 conn = db.Events
-
 
 def createEvent(eventData):
     try:        
