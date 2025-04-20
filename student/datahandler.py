@@ -20,7 +20,8 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 # MongoDB connection
-client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/'))
+MONGODB_URI = "mongodb+srv://Namitha:NamiHarshu%40866@cluster0.edzfz.mongodb.net/CloudProject?retryWrites=true&w=majority"
+client = MongoClient(MONGODB_URI)
 db = client.get_database("CloudProject")
 conn = db.Students
 
