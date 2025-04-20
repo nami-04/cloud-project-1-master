@@ -4,6 +4,7 @@ from club.models import Club
 from django.contrib.auth.models import User
 import uuid
 from pymongo import MongoClient
+import traceback
 import os
 
 # MongoDB connection
@@ -16,8 +17,9 @@ def createEvent(eventData):
         conn.insert_one(eventData)    
         event = Event(eventId=eventData['eventId'])
         event.save()
-    except:
+    except Exception as e:
         traceback.print_exc()
+        print(f"Error creating event: {str(e)}")
         return None
     return True
 
