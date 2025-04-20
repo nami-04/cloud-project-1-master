@@ -17,7 +17,7 @@ import os
 cred = credentials.Certificate("firebaseadmin.json")
 firebase_admin.initialize_app(cred)
 
-client = MongoClient("")
+client = MongoClient(os.environ.get('MONGODB_URI'))
 db = client.get_database("CloudProject")
 conn = db.Clubs
 
